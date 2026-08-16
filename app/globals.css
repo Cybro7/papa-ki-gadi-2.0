@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Noto Sans Devanagari", "Nirmala UI", system-ui, sans-serif;
+  --color-papa-amber: #e7a82d;
+  --color-papa-gold: #ffca45;
+  --color-papa-ink: #21150d;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #120d08;
+  color: white;
+  font-family: var(--font-display);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-bg {
+  background-image: url("/bg/scene-wide.png");
+}
+
+@media (orientation: portrait) {
+  .hero-bg {
+    background-image: url("/bg/scene-tall.png");
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.vinyl-spin {
+  animation: spin 8s linear infinite;
+}
+
+.clock-colon {
+  animation: blink 1s step-end infinite;
+}
+
+.seek-input {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.seek-input::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--seek-fill, #e7a82d) var(--seek-progress, 0%), rgba(255,255,255,.15) var(--seek-progress, 0%));
+}
+
+.seek-input::-moz-range-track {
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.15);
+}
+
+.seek-input::-moz-range-progress {
+  height: 3px;
+  border-radius: 999px;
+  background: var(--seek-fill, #e7a82d);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--seek-fill, #e7a82d) 70%, transparent);
+}
+
+.seek-input::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4.5px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.85);
+  background: var(--seek-fill, #e7a82d);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--seek-fill, #e7a82d) 70%, transparent);
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+
+.seek-wrap:hover .seek-input::-webkit-slider-thumb,
+.seek-wrap:focus-within .seek-input::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.seek-input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.85);
+  background: var(--seek-fill, #e7a82d);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--seek-fill, #e7a82d) 70%, transparent);
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+
+.seek-wrap:hover .seek-input::-moz-range-thumb,
+.seek-wrap:focus-within .seek-input::-moz-range-thumb {
+  opacity: 1;
+}
+
+.glass {
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(to bottom, rgba(255,255,255,.15), rgba(255,255,255,.055));
+  backdrop-filter: blur(48px) saturate(1.7);
+  -webkit-backdrop-filter: blur(48px) saturate(1.7);
+  box-shadow: 0 16px 48px -12px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+.youtube-slot iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Keep YouTube's visible player visually integrated into the artwork slot. */
+.youtube-slot {
+  background: rgba(0,0,0,.55);
+}
+
+::selection {
+  background: rgba(231,168,45,.35);
+}
